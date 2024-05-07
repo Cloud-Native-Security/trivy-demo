@@ -6,6 +6,7 @@
 !*/terraform/outputs.tf
 !*/terraform/terraform.tfvars
 
+kubeconfig*
 
 *.dll
 *.dylib

@@ -39,7 +39,7 @@ list-all-pkgs: false
 
 # Same as '--ignorefile'
 # Default is '.trivyignore'
-ignorefile: .trivyignore
+ignorefile: .trivyignore-one
 
 # Same as '--ignore-policy'
 # Default is empty

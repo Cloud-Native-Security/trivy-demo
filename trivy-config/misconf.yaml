@@ -61,8 +61,6 @@ output:
 # Default is all severities
 severity:
   - CRITICAL
-  - HIGH
-  - MEDIUM
 
 scan:
   # Same as '--file-patterns'
@@ -72,4 +70,4 @@ scan:
   # Same as '--skip-dirs'
   # Default is empty
   skip-dirs:
-    - ./bad_iac/terraform
+    - ./bad_iac/docker

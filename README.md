@@ -66,12 +66,12 @@ trivy fs website
 
 Scan a container image for vulnerabilities:
 ```
-trivy i anaisurlichs/cns-trivy-demo:0.1
+trivy image anaisurlichs/cns-website:0.2.5
 ```
 
 Scan a container image for vulnerabilities but ignore all vulnerabilities that do not have a fix available:
 ```
-trivy i --ignore-unfixed anaisurlichs/cns-trivy-demo:0.1
+trivy image --ignore-unfixed anaisurlichs/cns-website:0.2.5
 ```
 
 **Note**
@@ -94,7 +94,7 @@ HIGH: AsymmetricPrivateKey (private-key)
 #### Trivy detects Misconfiguration on the container image
 
 ```
-trivy image --image-config-scanners misconfig anaisurlichs/cns-trivy-demo:0.1
+trivy image --image-config-scanners misconfig anaisurlichs/cns-website:0.2.5
 ```
 
 ### Misconfiguration Scans
@@ -152,15 +152,9 @@ trivy config test.yaml
 
 ### Scan a binary
 
-The trivy binary is included in this repository:
-
-```
-./kubectl-neat --help
-```
-
 We can use Trivy to scan Trivy:
 ```
-trivy rootfs ./kubectl-neat
+trivy rootfs ./binary
 ```
 
 ### Custom Policies with Rego
@@ -235,6 +229,8 @@ trivy aws --region us-east-1 --service s3 --service ec2
 ### Scan your connected Kubernetes cluster
 
 [**Documentation**](https://aquasecurity.github.io/trivy/latest/docs/target/kubernetes/)
+
+Note: This section will change in the upcoming Trivy releases.
 
 If you don't have access to a Kubernetes cluster, quickly spin up a [KinD cluster:](https://kind.sigs.k8s.io/)
 ```
@@ -479,3 +475,12 @@ Some fancy jq command:
 ```
 trivy fs . --scanners license --license-full --format json | jq '[.Results[] | .Licenses//empty | .[]] | group_by(.Name) | .[] |{"license":.[1].Name, "findings":map(if .PkgName=="" then .FilePath else .PkgName end)}'
 ```
+
+## Install the Trivy Operator in Client Server Mode
+
+Tutorial: LINK 
+
+helm install trivy-operator ./deploy/helm \
+     --namespace trivy-system \
+     --create-namespace \
+     --values ./trivy-operator-values/client-server-mode.yaml

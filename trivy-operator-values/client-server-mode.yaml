@@ -1,0 +1,4 @@
+trivy:
+  mode: ClientServer
+  serverUrl: http://trivy-server.trivy-system:8080
+  ignoreUnfixed: true

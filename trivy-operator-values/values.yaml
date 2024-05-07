@@ -1,0 +1,4 @@
+operator:
+  builtInTrivyServer: true
+trivy:
+  ignoreUnfixed: true
